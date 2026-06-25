@@ -13,8 +13,8 @@ SCOPES = [
 LOCAL_FILE = "modules/study-analytics-dashboard-fab5a1f8904e.json"
 
 
+@st.cache_data(ttl=300)
 def load_sheet():
-
     try:
         credentials = Credentials.from_service_account_info(
             st.secrets["gcp_service_account"],
