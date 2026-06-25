@@ -15,6 +15,7 @@ LOCAL_FILE = "modules/study-analytics-dashboard-fab5a1f8904e.json"
 
 @st.cache_data(ttl=300)
 def load_sheet():
+
     try:
         credentials = Credentials.from_service_account_info(
             st.secrets["gcp_service_account"],
@@ -31,18 +32,18 @@ def load_sheet():
 
     sheet = client.open_by_key(SHEET_ID).sheet1
 
-  data = sheet.get_all_records()
+    data = sheet.get_all_records()
 
-if not data:
-    return pd.DataFrame(columns=[
-        "Date",
-        "Name",
-        "Subject",
-        "Start Time",
-        "End Time",
-        "Session Type",
-        "Remarks",
-        "Hours"
-    ])
+    if not data:
+        return pd.DataFrame(columns=[
+            "Date",
+            "Name",
+            "Subject",
+            "Start Time",
+            "End Time",
+            "Session Type",
+            "Remarks",
+            "Hours"
+        ])
 
-return pd.DataFrame(data)
+    return pd.DataFrame(data)
