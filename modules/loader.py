@@ -31,6 +31,18 @@ def load_sheet():
 
     sheet = client.open_by_key(SHEET_ID).sheet1
 
-    data = sheet.get_all_records()
+  data = sheet.get_all_records()
 
-    return pd.DataFrame(data)
+if not data:
+    return pd.DataFrame(columns=[
+        "Date",
+        "Name",
+        "Subject",
+        "Start Time",
+        "End Time",
+        "Session Type",
+        "Remarks",
+        "Hours"
+    ])
+
+return pd.DataFrame(data)
